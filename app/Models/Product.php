@@ -24,6 +24,12 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function photo()
+    {
+        return $this->belongsTo(Photo::class);
+    }
+
+
     public function sluggable(): array {
         return [
             'slug' => [

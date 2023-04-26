@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\ProductController;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
@@ -22,3 +25,7 @@ Route::get('/admin', function () {
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])->group(function () {
     Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
 });
+
+Route::resource('categories', CategoryController::class);
+Route::resource('products', ProductController::class);
+Route::resource('photos', PhotoController::class);
