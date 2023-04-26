@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Photo;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -11,7 +14,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        // Se utiliza con categorias
     }
 
     /**
@@ -19,7 +22,10 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.products.create', [
+            'photos' => Photo::all(),
+            'categories' => Category::all()
+        ]);
     }
 
     /**
@@ -27,7 +33,8 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Product::create($request->all());
+        return redirect('/categories');
     }
 
     /**
@@ -57,8 +64,9 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return back();
     }
 }

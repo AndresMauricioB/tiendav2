@@ -15,6 +15,7 @@
                     <th scope="col">Name</th>
                     <th scope="col">Description</th>
                     <th scope="col">Status</th>
+                    
                 </tr>
             </thead>
             <tbody>
@@ -22,7 +23,11 @@
                         <th scope="row">{{ $category->id }}</th>
                         <td>{{$category->name}}</td>
                         <td>{{$category->description}}</td>
-                        <td>{{$category->status}}</td>
+                        <td> @if ($category->status)
+                            Activo
+                            @else
+                            Inactivo
+                            @endif</td>
                     </tr>
             </tbody>
         </table>
@@ -35,9 +40,10 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">pName</th>
+                    <th scope="col">Name</th>
                     <th scope="col">Description</th>
                     <th scope="col">Status</th>
+                    <th scope="col" colspan="3">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -48,11 +54,15 @@
                         <th scope="row">{{ $item->id }}</th>
                         <td>{{$item->name}}</td>
                         <td>{{$item->description}}</td>
-                        <td>{{$item->status}}</td>
-                        <td><a href="/categories/{{$item->slug}}" class="btn btn-primary">Show</a></td>
-                        <td><a href="/categories/{{$item->slug}}/edit" class="btn btn-success">Edit</a></td>
+                        <td> @if ($item->status)
+                            Activo
+                            @else
+                            Inactivo
+                            @endif</td>
+                        <td><a href="/products/{{$item->slug}}" class="btn btn-primary">Show</a></td>
+                        <td><a href="/products/{{$item->slug}}/edit" class="btn btn-success">Edit</a></td>
                         <td>
-                            <form action="/categories/{{$item->slug}}" method="post">
+                            <form action="/products/{{$item->slug}}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <input
