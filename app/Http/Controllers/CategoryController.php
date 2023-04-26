@@ -43,7 +43,7 @@ class CategoryController extends Controller
     {
         return view('admin.categories.show',[
             'category' => $category,
-            'products' => $category->products(),
+            'products' => $category->products,
         
          ]);
     }

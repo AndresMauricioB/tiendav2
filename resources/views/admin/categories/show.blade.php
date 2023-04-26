@@ -43,12 +43,26 @@
             <tbody>
                 <script>console.log($category)</script>
                
-                @foreach($products as $item)
+                @foreach($category->products as $item)
                     <tr>
                         <th scope="row">{{ $item->id }}</th>
                         <td>{{$item->name}}</td>
                         <td>{{$item->description}}</td>
                         <td>{{$item->status}}</td>
+                        <td><a href="/categories/{{$item->slug}}" class="btn btn-primary">Show</a></td>
+                        <td><a href="/categories/{{$item->slug}}/edit" class="btn btn-success">Edit</a></td>
+                        <td>
+                            <form action="/categories/{{$item->slug}}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <input
+                                    type="submit"
+                                    class="btn btn-danger"
+                                    value="Delete"
+                                    onclick="return confirm('¿Está seguro que desea eliminar el registro?')"
+                                >
+                            </form>
+                        </td>
                         
                     </tr>
                 @endforeach

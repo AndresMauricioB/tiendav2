@@ -12,11 +12,12 @@ class Product extends Model
     use Sluggable;
 
     protected $fillable = [
-        'image',
         'name',
         'description',
         'price',
         'status',
+        'photo_id',
+        'category_id',
     ];
 
     public function category()
