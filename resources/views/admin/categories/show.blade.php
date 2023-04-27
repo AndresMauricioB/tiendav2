@@ -10,8 +10,6 @@
     <div class="container">
         <table class="table table-bordered table-striped">
             <thead>
-
-                
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
