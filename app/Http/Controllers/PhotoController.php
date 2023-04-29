@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Photo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PhotoController extends Controller
 {
@@ -19,7 +21,7 @@ class PhotoController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.photos.create');
     }
 
     /**
@@ -27,7 +29,17 @@ class PhotoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $file = $request->file('name');
+
+        // Guardar el archivo en Firebase Storage y obtener su URL de descarga
+        $url = Storage::disk('local')->putFile('img', $file);
+
+        // Guardar la URL de descarga en la base de datos
+        $photo = new Photo();
+        $photo->name = $request->input('name');
+        $photo->path = $url;
+        $photo->save();
+
     }
 
     /**
