@@ -5,8 +5,8 @@
         </h2>
     </x-slot>
 
-<div class="container">
-   
+<div class="container p-3">
+
     <form action="/categories/{{$category->slug}}" method="post">
         @csrf
         @method('PUT')
@@ -32,7 +32,7 @@
         <br>
         <input type="submit" value="Edit" class="btn btn-success">
     </form>
-    
+
 
     <div class="col">
         @if( $errors->any() )

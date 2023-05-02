@@ -14,7 +14,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        // Se utiliza con categorias
+        return view('admin.products.index', [
+            'products' => Product::all()
+        ]);
     }
 
     /**
@@ -22,9 +24,10 @@ class ProductController extends Controller
      */
     public function create()
     {
+
         return view('admin.products.create', [
             'photos' => Photo::all(),
-            'categories' => Category::all()
+            'category' => Category::all()
         ]);
     }
 
@@ -40,25 +43,31 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Product $product)
     {
-        //
+        return view('admin.products.show',[
+            'product' => $product,
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Product $product)
     {
-        //
+        return view('admin.products.edit', [
+            'product' => $product,
+            'categories' => Category::all(),
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Product $product)
     {
-        //
+        $product->update($request->all());
+            return redirect('/categories');
     }
 
     /**

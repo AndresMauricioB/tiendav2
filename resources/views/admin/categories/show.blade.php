@@ -6,7 +6,7 @@
     </x-slot>
 
 <div class="container">
-    
+
     <div class="container">
         <table class="table table-bordered table-striped">
             <thead>
@@ -15,7 +15,7 @@
                     <th scope="col">Name</th>
                     <th scope="col">Description</th>
                     <th scope="col">Status</th>
-                    
+
                 </tr>
             </thead>
             <tbody>
@@ -32,14 +32,15 @@
             </tbody>
         </table>
     </div>
-    <div class="container">
-        <a href="/products/create" class="btn btn-success">Add new Product</a>
+    <div class="container p-3">
+        <a href="/products" class="btn btn-success">Add new Product</a>
     </div>
-    <div class="container">
+    <div class="container p-3">
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
                     <th scope="col">#</th>
+                    <th scope="col">Img</th>
                     <th scope="col">Name</th>
                     <th scope="col">Description</th>
                     <th scope="col">Status</th>
@@ -48,10 +49,12 @@
             </thead>
             <tbody>
                 <script>console.log($category)</script>
-               
+
                 @foreach($category->products as $item)
                     <tr>
                         <th scope="row">{{ $item->id }}</th>
+                        <th><img src="{{ Storage::url($item->photo->path) }}" alt="{{ $item->photo->name }}" width="200"></th>
+
                         <td>{{$item->name}}</td>
                         <td>{{$item->description}}</td>
                         <td> @if ($item->status)
@@ -59,21 +62,18 @@
                             @else
                             Inactivo
                             @endif</td>
-                        <td><a href="/products/{{$item->slug}}" class="btn btn-primary">Show</a></td>
-                        <td><a href="/products/{{$item->slug}}/edit" class="btn btn-success">Edit</a></td>
+                        <td><a href="/products/{{$item->slug}}" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a></td>
+                        <td><a href="/products/{{$item->slug}}/edit" class="btn btn-success"><i class="fa-solid fa-pen-to-square"></i></a></td>
                         <td>
                             <form action="/products/{{$item->slug}}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <input
-                                    type="submit"
-                                    class="btn btn-danger"
-                                    value="Delete"
-                                    onclick="return confirm('¿Está seguro que desea eliminar el registro?')"
-                                >
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('¿Está seguro que desea eliminar el registro?')">
+                                    <i class="fas fa-trash"></i>
+                                </button>
                             </form>
                         </td>
-                        
+
                     </tr>
                 @endforeach
             </tbody>

@@ -5,10 +5,10 @@
         </h2>
     </x-slot>
 
-<div class="container">
-   
+<div class="container p-3">
+
     <form action="/products" method="post">
-        @csrf 
+        @csrf
         <br>
         <div class="form-group">
             <label for="name">Nombre:</label>
@@ -20,7 +20,7 @@
             <textarea name="description" id="description" class="form-control"></textarea>
         </div>
         <br>
-        
+
         <div class="form-group">
             <label for="price" class="form-label">Precio:</label>
             <input type="number" step="0.01" class="form-control" id="price" name="price" value="{{ old('price') }}">
@@ -28,7 +28,7 @@
         <br>
         <div class="form-group">
             <label for="status" class="form-label">Estado:</label>
-            <select class="form-select" id="status" name="status">  
+            <select class="form-select" id="status" name="status">
                 <option value="0" {{ old('status') == 0 ? 'selected' : '' }}>Inactivo</option>
                 <option value="1" {{ old('status') == 1 ? 'selected' : '' }}>Activo</option>
             </select>
@@ -46,17 +46,17 @@
         <br>
         <div class="form-group">
             <label for="category_id" class="form-label">Categoría:</label>
+
             <select class="form-select" id="category_id" name="category_id">
                 <option value="">Selecciona una categoría</option>
-                @foreach($categories as $category)
+
                 <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
-                @endforeach
             </select>
         </div>
         <br>
         <input type="submit" value="Save" class="btn btn-success">
     </form>
-    
+
 
     <div class="col">
         @if( $errors->any() )

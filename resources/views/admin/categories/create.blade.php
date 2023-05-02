@@ -5,10 +5,10 @@
         </h2>
     </x-slot>
 
-<div class="container">
-   
+<div class="container p-3">
+
     <form action="/categories" method="post">
-        @csrf 
+        @csrf
         <br>
         <div class="form-group">
             <label for="name">Nombre:</label>
@@ -30,7 +30,7 @@
         <br>
         <input type="submit" value="Save" class="btn btn-success">
     </form>
-    
+
 
     <div class="col">
         @if( $errors->any() )
