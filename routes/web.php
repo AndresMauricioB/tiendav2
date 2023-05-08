@@ -3,8 +3,8 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProductController;
-use App\Models\Category;
-use App\Models\Product;
+use App\Http\Controllers\PublicController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,14 +18,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/admin', [PublicController::class, 'index']);
+
+Route::get('/', [PublicController::class, 'info']);
 
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])->group(function () {
     Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
+
+    Route::resource('categories', CategoryController::class);
+    Route::resource('products', ProductController::class);
+    Route::resource('photos', PhotoController::class);
+    Route::resource('users', UserController::class);
+
+    Route:: get('/register', function (){return view( 'auth.register');});
+
 });
 
-Route::resource('categories', CategoryController::class);
-Route::resource('products', ProductController::class);
-Route::resource('photos', PhotoController::class);
+

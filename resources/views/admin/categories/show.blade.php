@@ -33,7 +33,7 @@
         </table>
     </div>
     <div class="container p-3">
-        <a href="/products" class="btn btn-success">Add new Product</a>
+        <a href="/products/create" class="btn btn-success">Add new Product</a>
     </div>
     <div class="container p-3">
         <table class="table table-bordered table-striped">
@@ -48,7 +48,6 @@
                 </tr>
             </thead>
             <tbody>
-                <script>console.log($category)</script>
 
                 @foreach($category->products as $item)
                     <tr>

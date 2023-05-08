@@ -24,10 +24,10 @@ class ProductController extends Controller
      */
     public function create()
     {
-
+        //dd('holaaaaaaa');
         return view('admin.products.create', [
             'photos' => Photo::all(),
-            'category' => Category::all()
+            'categories' => Category::all(),
         ]);
     }
 

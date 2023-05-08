@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\CreateCategory;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Support\Facades\Mail;
 
 class CategoryController extends Controller
 {
@@ -13,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-
+        
         return view('admin.categories.index', [
             'categories' => Category::all()
         ]);
@@ -32,7 +34,10 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        Category::create($request->all());
+        $category = Category::create($request->all());
+        
+         Mail::to(['andres.3802010523@ucaldas.edu.co', 'mateo.ceballos14714@ucaldas.edu.co'])
+        ->send(new CreateCategory($category));
         return redirect('/categories');
     }
 
@@ -41,6 +46,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
+    
         return view('admin.categories.show',[
             'category' => $category,
             'products' => $category->products,
@@ -53,6 +59,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
+       
         return view('admin.categories.edit', [
             'category' => $category
         ]);
