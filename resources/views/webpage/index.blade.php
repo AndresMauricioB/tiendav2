@@ -18,7 +18,7 @@
                                     <p class="card-text">{{ $product->description }}</p>
                                     <p class="card-text">{{ $product->price }}</p>                                
                                     
-                                    <a href="/products/{{$product->slug}}" class="btn btn-primary">Comprar</a>
+                                    <a href="#" class="btn btn-primary">Comprar</a>
 
                                   </div>
                                 </div>

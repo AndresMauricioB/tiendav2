@@ -18,18 +18,7 @@ class PublicController extends Controller
         return view('webpage.index', [
             'categories' => Category::where('status', 1)
             ->with(['products' => function ($query) {
-                $query->where('status', 1);}])->get(),
-            
-        ]);
-    }
-
-    public function addItem()
-    {
-        return view('webpage.index', [
-            'categories' => Category::where('status', 1)
-            ->with(['products' => function ($query) {
-                $query->where('status', 1);}])->get(),
-            
+                $query->where('status', 1);}])->get(),  
         ]);
     }
 

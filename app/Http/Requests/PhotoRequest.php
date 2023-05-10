@@ -22,7 +22,7 @@ class PhotoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|file|image|mimes:jpeg,png,gif|max:2048',
         ];
     }
 }
