@@ -7,7 +7,7 @@
                 <div class="row">
                     @foreach($categories as $category)
                     <div class="col-md-12">
-                        <h3>{{ $category->name }} </h3>
+                        <h3 class=" p-5" style="background-color: #e3f2fd;">{{ $category->name }} </h3>
                         <div class="row row-cols-1 row-cols-md-3 g-4">
                             @foreach ($category->products as $product)
                               <div class="col">
