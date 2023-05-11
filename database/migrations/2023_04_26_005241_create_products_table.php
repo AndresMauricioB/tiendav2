@@ -19,9 +19,9 @@ return new class extends Migration
             $table->boolean('status');
             $table->integer('index');
             $table->unsignedBigInteger('photo_id');
-            $table->foreign('photo_id')->references('id')->on('photos');
+            $table->foreign('photo_id')->references('id')->on('photos')->onDelete('cascade');;
             $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');;
             $table->string('slug')->unique()->nullable();
             $table->timestamps();
         });
