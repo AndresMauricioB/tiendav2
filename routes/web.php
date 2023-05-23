@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProductController;
@@ -17,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/cart/{product}', [CartController::class, 'add']);
+Route::get('/cart', [CartController::class, 'delete']);
 
 Route::get('/admin', [PublicController::class, 'index']);
 

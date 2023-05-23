@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use App\Models\Product;
+use Illuminate\Support\Facades\Session;
 
 class PublicController extends Controller
 {
@@ -18,7 +18,10 @@ class PublicController extends Controller
         return view('webpage.index', [
             'categories' => Category::where('status', 1)
             ->with(['products' => function ($query) {
-                $query->where('status', 1);}])->get(),  
+                $query->where('status', 1);}])->get(),
+            'cart' => Session::get('cart'),
+            'total'=> Session::get('total')    
+                  
         ]);
     }
 
